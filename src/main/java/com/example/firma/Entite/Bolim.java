@@ -18,8 +18,7 @@ public class Bolim {
     @Column(nullable = false)
     private String nomi;
 
-    @OneToMany
-    private List<Ishchi> ishchi;
+
 
     @ManyToOne
     private Firma firma;

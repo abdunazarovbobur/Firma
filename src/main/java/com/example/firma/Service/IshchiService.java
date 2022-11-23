@@ -2,8 +2,10 @@ package com.example.firma.Service;
 
 import com.example.firma.DTO.APIResponse;
 import com.example.firma.DTO.IshchiDTO;
+import com.example.firma.Entite.Bolim;
 import com.example.firma.Entite.Ishchi;
 import com.example.firma.Entite.Manzil;
+import com.example.firma.Repozitary.BolimRepozitary;
 import com.example.firma.Repozitary.IshchiRepozitary;
 import com.example.firma.Repozitary.ManzilRepozitary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import java.util.Optional;
 
 @Service
 public class IshchiService {
+    @Autowired
+    BolimRepozitary bolimRepozitary;
     @Autowired
     ManzilRepozitary manzilRepozitary;
     @Autowired
@@ -31,7 +35,11 @@ public class IshchiService {
         ishchi.setLavozim(ishchiDTO.getLavozim());
         ishchi.setTelRaqam(ishchiDTO.getTelRaqam());
         ishchi.setManzil(save);
+
+        ishchi.setBolim(bolimRepozitary.findById(ishchiDTO.getBolimId()).get());
+
         ishchiRepozitary.save(ishchi);
+
         return  new APIResponse("saqlandi",true);
     }
 
@@ -43,7 +51,8 @@ public class IshchiService {
             manzil.setKocha(ishchiDTO.getKocha());
             manzil.setTuman(ishchiDTO.getTuman());
             Manzil save = manzilRepozitary.save(manzil);
-            Ishchi ishchi=new Ishchi();
+            Optional<Ishchi> byId1 = ishchiRepozitary.findById(id);
+            Ishchi ishchi=byId1.get();
             ishchi.setIsmi(ishchiDTO.getIsmi());
             ishchi.setFam(ishchiDTO.getFam());
             ishchi.setLavozim(ishchiDTO.getLavozim());

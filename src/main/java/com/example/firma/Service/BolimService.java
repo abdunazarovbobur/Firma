@@ -10,6 +10,7 @@ import com.example.firma.Repozitary.IshchiRepozitary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,13 @@ public class BolimService {
         bolim.setNomi(bolimDTO.getNomi());
         bolim.setFirma(firmaRepozitary.findById(bolimDTO.getFirmaId()).get());
         bolimRepozitary.save(bolim);
-        return new APIResponse("Malumot salandi",true);
+        return new APIResponse("Malumot saqlandi",true);
     }
 
     public APIResponse taxrirlash(Integer id, BolimDTO bolimDTO) {
         Optional<Bolim> byId = bolimRepozitary.findById(id);
         if(byId.isPresent()) {
-            Bolim bolim=new Bolim();
+            Bolim bolim=byId.get();
             bolim.setNomi(bolimDTO.getNomi());
             bolim.setFirma(firmaRepozitary.findById(bolimDTO.getFirmaId()).get());
             bolimRepozitary.save(bolim);

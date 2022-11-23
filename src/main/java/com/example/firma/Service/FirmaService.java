@@ -43,7 +43,8 @@ public class FirmaService {
              manzil.setKocha(firma_dto.getKocha());
              manzil.setTuman(firma_dto.getTuman());
              Manzil save = manzilRepozitary.save(manzil);
-             Firma firma=byId.get();
+             Optional<Firma> byId1 = firmaRepozitary.findById(id);
+             Firma firma=byId1.get();
              firma.setFirmaNomi(firma_dto.getFirmaNomi());
              firma_dto.setDriktorNomi(firma_dto.getDriktorNomi());
              firma.setManzil(save);

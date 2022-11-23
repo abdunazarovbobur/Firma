@@ -9,5 +9,4 @@ import java.util.List;
 public class BolimDTO {
     private String nomi;
     private Integer firmaId;
-    private List<Ishchi> ishchiList;
 }

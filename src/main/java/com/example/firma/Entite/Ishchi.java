@@ -21,4 +21,6 @@ public class Ishchi {
 
     @OneToOne
     Manzil manzil;
+    @ManyToOne
+    Bolim bolim;
 }

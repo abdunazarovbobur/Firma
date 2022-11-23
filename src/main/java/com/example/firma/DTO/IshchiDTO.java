@@ -11,5 +11,6 @@ public class IshchiDTO {
     private String viloyat;
     private String tuman;
     private String kocha;
+    private Integer bolimId;
 
 }
